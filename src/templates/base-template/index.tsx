@@ -14,16 +14,30 @@ import {
 	SearchInput,
 } from "./styles";
 import { ToggleTheme } from "@/components/toggle-theme";
+import { Suspense } from "react";
 
 export type BaseTemplateProps = {
 	settings: StrapiSettings;
 	children: React.ReactNode;
 };
 
-export const BaseTemplate = ({ settings, children }: BaseTemplateProps) => {
+const SearchForm = () => {
 	const searchParams = useSearchParams();
 	const searchQuery = searchParams.get("q") || "";
 
+	return (
+		<form action="/search/" method="GET">
+			<SearchInput
+				type="search"
+				placeholder="Encontre posts"
+				name="q"
+				defaultValue={searchQuery}
+			/>
+		</form>
+	);
+};
+
+export const BaseTemplate = ({ settings, children }: BaseTemplateProps) => {
 	return (
 		<BaseTemplateContainer>
 			<ToggleTheme />
@@ -43,14 +57,9 @@ export const BaseTemplate = ({ settings, children }: BaseTemplateProps) => {
 			</BaseTemplateHeader>
 
 			<BaseTemplateSearchContainer>
-				<form action="/search/" method="GET">
-					<SearchInput
-						type="search"
-						placeholder="Encontre posts"
-						name="q"
-						defaultValue={searchQuery}
-					/>
-				</form>
+				<Suspense>
+					<SearchForm />
+				</Suspense>
 			</BaseTemplateSearchContainer>
 
 			<BaseTemplateContent>{children}</BaseTemplateContent>
