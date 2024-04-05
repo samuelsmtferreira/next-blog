@@ -23,6 +23,11 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  iframe {
+    height: 400px;
+    overflow-y: auto;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: ${({ theme }) => theme.font.family.default};
     margin: ${({ theme }) => theme.spacings.large} 0;
