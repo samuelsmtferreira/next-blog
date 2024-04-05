@@ -2,7 +2,9 @@ import styled, { css } from "styled-components";
 
 export const PostTagsContainer = styled.p`
 	${({ theme }) => css`
-		margin: ${theme.spacings.medium} 0;
+		margin: ${theme.spacings.medium} auto;
+		max-width: ${theme.sizes.content};
+		padding: 0 ${theme.spacings.large} 0;
 
 		span {
 			margin: 0 0 0 0.5rem;
@@ -24,8 +26,8 @@ export const PostTagsContainer = styled.p`
 			color: ${theme.colors.secondary};
 			text-decoration: none;
 			transition: all 300ms ease-in-out;
-		
-            &:hover {
+
+			&:hover {
 				filter: brightness(50%);
 			}
 		}
